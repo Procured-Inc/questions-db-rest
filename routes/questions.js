@@ -612,7 +612,7 @@ router.route('/tech/stoptest/:testID')
 router.route('/psycho/starttest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Psycho').find({testID: testID},'testID qID ques answers', function (err, tech) {
+        mongoose.model('Psycho').find({testID: testID},'testID qID ques answers', function (err, psycho) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -630,7 +630,7 @@ router.route('/psycho/starttest/:testID')
                     //     });
                     // },
                     json: function(){
-                        res.json(tech);
+                        res.json(psycho);
                     }
                 });
             }
@@ -641,7 +641,7 @@ router.route('/psycho/starttest/:testID')
 router.route('/psycho/stoptest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Psycho').find({testID: testID},'testID qID correct', function (err, tech) {
+        mongoose.model('Psycho').find({testID: testID},'testID qID correct', function (err, psycho) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -659,7 +659,7 @@ router.route('/psycho/stoptest/:testID')
                     //     });
                     // },
                     json: function(){
-                        res.json(tech);
+                        res.json(psycho);
                     }
                 });
             }
@@ -675,7 +675,7 @@ router.route('/psycho/stoptest/:testID')
 router.route('/code/starttest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Code').find({testID: testID},'testID qID ques answers', function (err, tech) {
+        mongoose.model('Code').find({testID: testID},'testID qID ques answers', function (err, code) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -693,7 +693,7 @@ router.route('/code/starttest/:testID')
                     //     });
                     // },
                     json: function(){
-                        res.json(tech);
+                        res.json(code);
                     }
                 });
             }
@@ -703,7 +703,7 @@ router.route('/code/starttest/:testID')
 router.route('/code/stoptest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Code').find({testID: testID},'testID qID correct', function (err, tech) {
+        mongoose.model('Code').find({testID: testID},'testID qID correct', function (err, code) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -721,7 +721,7 @@ router.route('/code/stoptest/:testID')
                     //     });
                     // },
                     json: function(){
-                        res.json(tech);
+                        res.json(code);
                     }
                 });
             }
