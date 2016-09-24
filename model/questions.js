@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var aptiSchema = new mongoose.Schema({
+    qID: Number,
     testID: String,
     ques: String,
     answers: [String, String, String, String],
@@ -8,6 +9,7 @@ var aptiSchema = new mongoose.Schema({
 });
 
 var techSchema = new mongoose.Schema({
+    qID: Number,
     testID: String,
     ques: String,
     answers: [String, String, String, String],
@@ -16,6 +18,7 @@ var techSchema = new mongoose.Schema({
 
 
 var psychoSchema = new mongoose.Schema({
+    qID: Number,
     testID: String,
     ques: String,
     answers: [String, String, String, String],
@@ -24,6 +27,7 @@ var psychoSchema = new mongoose.Schema({
 
 
 var codeSchema = new mongoose.Schema({
+    qID: Number,
     testID: String,
     ques: String,
     input: [String, String, String, String],

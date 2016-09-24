@@ -50,7 +50,7 @@ router.route('/apti')
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
 
-
+        var qID = parseInt(req.body.qID, 10);
         var testID = req.body.testID;
         var ques = req.body.ques;
         var answers =  req.body.answers;
@@ -58,6 +58,7 @@ router.route('/apti')
 
          //call the create function for our database
         mongoose.model('Apti').create({
+            qID: qID,
             testID: testID,
             ques: ques,
             answers: answers,
@@ -120,7 +121,7 @@ router.route('/tech')
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
 
-
+        var qID = parseInt(req.body.qID, 10);
         var testID = req.body.testID;
         var ques = req.body.ques;
         var answers =  req.body.answers;
@@ -128,6 +129,7 @@ router.route('/tech')
 
         //call the create function for our database
         mongoose.model('Tech').create({
+            qID: qID,
             testID: testID,
             ques: ques,
             answers: answers,
@@ -190,6 +192,7 @@ router.route('/psycho')
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
 
 
+        var qID = parseInt(req.body.qID, 10);
         var testID = req.body.testID;
         var ques = req.body.ques;
         var answers =  req.body.answers;
@@ -197,6 +200,7 @@ router.route('/psycho')
 
         //call the create function for our database
         mongoose.model('Psycho').create({
+            qID: qID,
             testID: testID,
             ques: ques,
             answers: answers,
@@ -446,6 +450,7 @@ router.route('/code')
 
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
+        var qID = parseInt(req.body.qID, 10);
         var testID = req.body.testID;
         var ques = req.body.ques;
         var input =  req.body.input;
@@ -453,6 +458,8 @@ router.route('/code')
 
         //call the create function for our database
         mongoose.model('Code').create({
+
+            qID: qID,
             testID: testID,
             ques: ques,
             input: input,
@@ -484,7 +491,7 @@ router.route('/code')
 router.route('/apti/starttest/:testID')
     .get(function(req, res) {
         var aptiid = req.params.testID;
-        mongoose.model('Apti').find({testID: aptiid},'testID ques answers', function (err, apti) {
+        mongoose.model('Apti').find({testID: aptiid},'testID qID ques answers', function (err, apti) {
             console.log(aptiid);
             if (err) {
 
@@ -514,7 +521,7 @@ router.route('/apti/starttest/:testID')
 router.route('/apti/stoptest/:testID')
     .get(function(req, res) {
         var aptiid = req.params.testID;
-        mongoose.model('Apti').find({testID: aptiid},'testID correct', function (err, apti) {
+        mongoose.model('Apti').find({testID: aptiid},'testID qID correct', function (err, apti) {
             console.log(aptiid);
             if (err) {
 
@@ -545,7 +552,7 @@ router.route('/apti/stoptest/:testID')
 router.route('/tech/starttest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Tech').find({testID: testID},'testID ques answers', function (err, tech) {
+        mongoose.model('Tech').find({testID: testID},'testID qID ques answers', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -573,7 +580,7 @@ router.route('/tech/starttest/:testID')
 router.route('/tech/stoptest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Tech').find({testID: testID},'testID correct', function (err, tech) {
+        mongoose.model('Tech').find({testID: testID},'testID qID correct', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -605,7 +612,7 @@ router.route('/tech/stoptest/:testID')
 router.route('/psycho/starttest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Psycho').find({testID: testID},'testID ques answers', function (err, tech) {
+        mongoose.model('Psycho').find({testID: testID},'testID qID ques answers', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -634,7 +641,7 @@ router.route('/psycho/starttest/:testID')
 router.route('/psycho/stoptest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Psycho').find({testID: testID},'testID correct', function (err, tech) {
+        mongoose.model('Psycho').find({testID: testID},'testID qID correct', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -668,7 +675,7 @@ router.route('/psycho/stoptest/:testID')
 router.route('/code/starttest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Code').find({testID: testID},'testID ques answers', function (err, tech) {
+        mongoose.model('Code').find({testID: testID},'testID qID ques answers', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
@@ -696,7 +703,7 @@ router.route('/code/starttest/:testID')
 router.route('/code/stoptest/:testID')
     .get(function(req, res) {
         var testID = req.params.testID;
-        mongoose.model('Code').find({testID: testID},'testID correct', function (err, tech) {
+        mongoose.model('Code').find({testID: testID},'testID qID correct', function (err, tech) {
             console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
