@@ -335,7 +335,7 @@ router.route('/tech/:testID')
                 res.send("404 error");
 
             } else {
-                console.log('GET Retrieving ID: ' + techID);
+                console.log('GET Retrieving ID: ' + testID);
                 console.log(typeof (testID));
                 res.format({
                     // html: function(){
@@ -366,7 +366,7 @@ router.route('/psycho/:testID')
                 res.send("404 error");
 
             } else {
-                console.log('GET Retrieving ID: ' + techID);
+                console.log('GET Retrieving ID: ' + testID);
                 console.log(typeof (testID));
                 res.format({
                     // html: function(){
@@ -402,7 +402,7 @@ router.route('/code/:testID')
                 res.send("404 error");
 
             } else {
-                console.log('GET Retrieving ID: ' + techID);
+                console.log('GET Retrieving ID: ' + testID);
                 console.log(typeof (testID));
                 res.format({
                     // html: function(){
@@ -479,6 +479,252 @@ router.route('/code')
             }
         })
     });
+
+
+router.route('/apti/starttest/:testID')
+    .get(function(req, res) {
+        var aptiid = req.params.testID;
+        mongoose.model('Apti').find({testID: aptiid},'testID ques answers', function (err, apti) {
+            console.log(aptiid);
+            if (err) {
+
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + aptiid);
+                console.log(typeof (aptiid));
+                console.log(apti)
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(apti);
+                    }
+                });
+            }
+        });
+    });
+
+router.route('/apti/stoptest/:testID')
+    .get(function(req, res) {
+        var aptiid = req.params.testID;
+        mongoose.model('Apti').find({testID: aptiid},'testID correct', function (err, apti) {
+            console.log(aptiid);
+            if (err) {
+
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + aptiid);
+                console.log(typeof (aptiid));
+                console.log(apti)
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(apti);
+                    }
+                });
+            }
+        });
+    });
+
+
+router.route('/tech/starttest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Tech').find({testID: testID},'testID ques answers', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+router.route('/tech/stoptest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Tech').find({testID: testID},'testID correct', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+router.route('/psycho/starttest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Psycho').find({testID: testID},'testID ques answers', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+router.route('/psycho/stoptest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Psycho').find({testID: testID},'testID correct', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+
+
+router.route('/code/starttest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Code').find({testID: testID},'testID ques answers', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+router.route('/code/stoptest/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Code').find({testID: testID},'testID correct', function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + testID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
 
 
 
