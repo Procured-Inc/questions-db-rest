@@ -326,9 +326,9 @@ router.route('/apti/:testID')
 
 router.route('/tech/:testID')
     .get(function(req, res) {
-         var techID = req.params.testID;
-        mongoose.model('Tech').find(techID, function (err, tech) {
-            console.log(techID);
+         var testID = req.params.testID;
+        mongoose.model('Tech').find({testID: testID}, function (err, tech) {
+            console.log(testID);
             if (err) {
                 console.log('GET Error: There was a problem retrieving: ' + err);
                 res.status(404);
@@ -336,7 +336,38 @@ router.route('/tech/:testID')
 
             } else {
                 console.log('GET Retrieving ID: ' + techID);
-                console.log(typeof (techID));
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+router.route('/psycho/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Psycho').find({testID: testID}, function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + techID);
+                console.log(typeof (testID));
                 res.format({
                     // html: function(){
                     //     res.render('blobs/show', {
@@ -358,6 +389,35 @@ router.route('/tech/:testID')
 
 
 
+
+
+router.route('/code/:testID')
+    .get(function(req, res) {
+        var testID = req.params.testID;
+        mongoose.model('Code').find({testID: testID}, function (err, tech) {
+            console.log(testID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + techID);
+                console.log(typeof (testID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
 
 
 
