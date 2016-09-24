@@ -228,6 +228,136 @@ router.route('/psycho')
 
 
 
+// route middleware to validate :id
+// router.param('testID', function(req, res, next, id) {
+//     console.log('validating ' + id + ' exists');
+//     //find the ID in the Database
+//     mongoose.model('Tech').findById(id, function (err, blob) {
+//         //if it isn't found, we are going to respond with 404
+//         if (err) {
+//             console.log(id + ' was not found');
+//             res.status(404);
+//             var err = new Error('Not Found');
+//             err.status = 404;
+//             res.format({
+//                 // html: function(){
+//                 //     next(err);
+//                 // },
+//                 json: function(){
+//                     res.json({message : err.status  + ' ' + err});
+//                 }
+//             });
+//             //if it is found we continue on
+//         } else {
+//             //uncomment this next line if you want to see every JSON document response for every GET/PUT/DELETE call
+//             //console.log(blob);
+//             // once validation is done save the new item in the req
+//             req.testID = id;
+//             // go to the next thing
+//             next();
+//         }
+//     });
+// });
+
+
+// // route middleware to validate :id
+//
+// router.param('id', function(req, res, next, id) {
+//     //console.log('validating ' + id + ' exists');
+//     //find the ID in the Database
+//     mongoose.model('Blob').findById(id, function (err, blob) {
+//         //if it isn't found, we are going to respond with 404
+//         if (err) {
+//             console.log(id + ' was not found');
+//             res.status(404);
+//             var err = new Error('Not Found');
+//             err.status = 404;
+//             res.format({
+//                 // html: function(){
+//                 //     next(err);
+//                 // },
+//                 json: function(){
+//                     res.json({message : err.status  + ' ' + err});
+//                 }
+//             });
+//             //if it is found we continue on
+//         } else {
+//             //uncomment this next line if you want to see every JSON document response for every GET/PUT/DELETE call
+//             //console.log(blob);
+//             // once validation is done save the new item in the req
+//             req.id = id;
+//             // go to the next thing
+//             next();
+//         }
+//     });
+// });
+//
+
+
+router.route('/apti/:testID')
+    .get(function(req, res) {
+        var aptiid = req.params.testID;
+        mongoose.model('Apti').find({testID: aptiid}, function (err, apti) {
+            console.log(aptiid);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + aptiid);
+                console.log(typeof (aptiid));
+                console.log(apti)
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(apti);
+                    }
+                });
+            }
+        });
+    });
+
+
+router.route('/tech/:testID')
+    .get(function(req, res) {
+         var techID = req.params.testID;
+        mongoose.model('Tech').find(techID, function (err, tech) {
+            console.log(techID);
+            if (err) {
+                console.log('GET Error: There was a problem retrieving: ' + err);
+                res.status(404);
+                res.send("404 error");
+
+            } else {
+                console.log('GET Retrieving ID: ' + techID);
+                console.log(typeof (techID));
+                res.format({
+                    // html: function(){
+                    //     res.render('blobs/show', {
+                    //         "blobdob" : blobdob,
+                    //         "blob" : blob
+                    //     });
+                    // },
+                    json: function(){
+                        res.json(tech);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+
+
+
+
 
 
 
@@ -274,7 +404,6 @@ router.route('/code')
                 //Blob for CODE has been created
                 console.log('POST creating new Code: ' + question);
                 res.format({
-
                     //HTML response will set the location and redirect back to the home page. You could also create a 'success' page if that's your thing
                     // html: function(){
                     //     // If it worked, set the header so the address bar doesn't still say /adduser
@@ -282,7 +411,6 @@ router.route('/code')
                     //     // And forward to success page
                     //     res.redirect("/blobs");
                     // },
-
                     //JSON response will show the newly created blob
                     json: function(){
                         res.json(question);
