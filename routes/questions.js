@@ -502,7 +502,7 @@ router.route('/apti/starttest/:testID')
             } else {
                 console.log('GET Retrieving ID: ' + aptiid);
                 console.log(typeof (aptiid));
-                console.log(apti)
+                console.log(apti);
                 res.format({
                     // html: function(){
                     //     res.render('blobs/show', {
